@@ -4,14 +4,15 @@ router.get('/', (req, res)=>{
     res.send("Welcome to our chats APIs")
 });
 
-router.get('/register', (req, res)=>{
+/*router.get('/register', (req, res)=>{
     res.send("You are about to register");
-});
+});*/
 
 router.get('/login', (req, res)=>{
     res.send("You are about to login");
 });
-//router.get('/users', require('./users'));
+
+router.use('/users', require('./users'));
 
 
 module.exports = router;
