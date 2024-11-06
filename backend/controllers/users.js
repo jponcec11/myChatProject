@@ -3,13 +3,22 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const createUser = async (req, res)=>{
-    /*const {email} = req.body;
-    let emailDb = await mongodb.getDatabase().db().collection('myChats').findOne({email});
+    const user = {
+        email : req.body.email
+    }
+    let emailDb = await mongodb.getDatabase().db().collection('myChats').findOne({user});
 
     if(emailDb){
         return res.status(400).json(`Email: ${email} already exists. Please try a different email address.`)
-    }*/
-   res.send('Entered function')
+    }
+    const response = await mongodb.getDatabase().db().collection('myChats').insertOne(user);
+    if(response.acknowledged){
+        res.status(204).send();
+    } else{
+        res.status(500).json(response.error || 'Some error occurred while creating the user.');
+    }
 }
 
-module.exports = createUser;
+module.exports = {
+    createUser
+}
