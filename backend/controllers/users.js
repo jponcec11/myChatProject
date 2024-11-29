@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const createUser = async (req, res)=>{
     const user = {
-        email : req.body.email
+        email : req.body
     }
     let emailDb = await mongodb.getDatabase().db().collection('myChats').findOne({user});
 
